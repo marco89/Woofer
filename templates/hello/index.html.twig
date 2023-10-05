@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<!-- this is an example of twig template inheritance. Instead of having to put the same html code in every file.
+you can just use inheritance to call the required divs. The html divs contained within the blocks is what is called 
+and you reference them with the div tag type that follows `block` which in this example is `body` -->
+<div>
+    {{message}}
+</div>
+{% endblock %}
