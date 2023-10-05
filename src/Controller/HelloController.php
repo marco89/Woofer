@@ -4,9 +4,10 @@ namespace App\Controller;
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 
-class HelloController 
+class HelloController extends AbstractController
 {
     private array $messages = [
         'Hello!', 'Hi!', 'Goodbye!'
@@ -32,12 +33,13 @@ class HelloController
     // Response afterwards is typehinting that this method gives a response
     public function index(int $limit): Response 
     {
-        return new Response(
-            /* takes the $limit param, which is specified by the user when hitting the url e.g. www.example.com/2 (so $limit = 2) and uses that as
-            the third param for the array_slice method. This means that the user is shown the whole array UP TO the index they specify in the url */
-            implode(',', array_slice($this->messages, 0, $limit))
+        /* takes the $limit param, which is specified by the user when hitting the url e.g. www.example.com/2 (so $limit = 2) and uses that as
+        the third param for the array_slice method. This means that the user is shown the whole array UP TO the index they specify in the url */
+        return $this->render(
+            'hello/index.html.twig',
+            ['message' => implode(',', array_slice($this->messages, 0, $limit))]
         );
-    }
+    } 
 
     /* the way routing works is that this method is responsible for handling requests to all urls like www.example.com/messages/420
     or www.example.com/messages/69. So it takes an id from the url (this is what's passed in as the param) and returns it as a response.*/
@@ -45,6 +47,13 @@ class HelloController
     public function showOne(int $id): Response
     {
         // $this-> refers to the current instance of the class where it's used i.e. the current instance of the HelloController class
-        return new Response($this->messages[$id]);
+        return $this->render(
+            // when referencing a template, the file path should always lead FROM the temples folder
+            'hello/show_one.html.twig',
+            [
+                // this message var is then used in the html.twig template file and is referenced with {{message}}
+                'message' => $this->messages[$id]
+            ] 
+            );
     }
 }
