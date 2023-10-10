@@ -10,7 +10,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class HelloController extends AbstractController
 {
     private array $messages = [
-        'Hello!', 'Hi!', 'Goodbye!'
+        ['message' => 'Hello', 'test', '2023/09/12'],
+        ['message' => 'Hi', 'created', '2023/08/04'],
+        ['message' => 'Bye', 'created', '2022/05/12'] 
     ];
 
     /* Route naming explanation: 
@@ -33,11 +35,12 @@ class HelloController extends AbstractController
     // Response afterwards is typehinting that this method gives a response
     public function index(int $limit): Response 
     {
-        /* takes the $limit param, which is specified by the user when hitting the url e.g. www.example.com/2 (so $limit = 2) and uses that as
-        the third param for the array_slice method. This means that the user is shown the whole array UP TO the index they specify in the url */
         return $this->render(
+            // this just tells symfony: render the index template and give it the value of messages and limit
             'hello/index.html.twig',
-            ['message' => implode(',', array_slice($this->messages, 0, $limit))]
+            ['messages' => $this->messages,
+            'limit' => $limit
+            ]
         );
     } 
 
