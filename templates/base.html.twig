@@ -2,6 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        <!-- appears in browser title, it being called title is arbitrary but good practice to match the title tags. The same goes with body -->
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
@@ -14,7 +15,8 @@
         {% endblock %}
     </head>
     <body>
-    <h1>Welcome to Woofer</h1>
+    <!-- because this is a base template, it will display its contents wherever it is called and templates that extend it will also display it -->
+    <h1>Welcome to Woofer!</h1>
         {% block body %}{% endblock %}
     </body>
 </html>
