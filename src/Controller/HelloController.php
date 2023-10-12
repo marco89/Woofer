@@ -10,9 +10,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class HelloController extends AbstractController
 {
     private array $messages = [
-        ['message' => 'Hello', 'test', '2023/09/12'],
-        ['message' => 'Hi', 'created', '2023/08/04'],
-        ['message' => 'Bye', 'created', '2022/05/12'] 
+        ['message' => 'Hello', 'created' => '2023/09/12'],
+        ['message' => 'Hi', 'created' => '2023/08/04'],
+        ['message' => 'Bye', 'created' => '2022/05/12'] 
     ];
 
     /* Route naming explanation: 
