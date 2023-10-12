@@ -4,6 +4,19 @@
 you can just use inheritance to call the required divs. The html divs contained within the blocks is what is called 
 and you reference them with the div tag type that follows `block` which in this example is `body` -->
 <div>
-    {{message}}
+  {% if messages|length > 0 %}
+  <!-- limit is $limit from the controller -->
+  <!-- key,message is symfony syntax for a foreach -->
+  <!-- app_show_one is name of the route, routes are viewed by running symfony console debug:router -->
+    {% for key,message in messages|slice(0, limit) %}
+      <div style="color: blue;">
+        <a href="{{ path('app_show_one', {id : key}) }}">{{message.message}}</a>
+      </div> 
+      {{ include('hello/_message.html.twig', {message: message})}}
+    {% endfor %}
+  {% else %}
+    There's nothing here yet!
+  {% endif %}
 </div>
 {% endblock %}
+
