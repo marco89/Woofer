@@ -3,8 +3,9 @@
 {% block body %}
 <div> 
     <b>
-    <!-- the message var comes from the controller file -->
-        {{message}}
+     {{message.message}}
+    {{ include('hello/_message.html.twig', {message: message})}}
+    <a href="{{ path('app_index') }}">Return home</a>
     </b>
 </div>
 {% endblock %}
