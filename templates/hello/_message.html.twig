@@ -1,0 +1,8 @@
+<div>
+    <!-- param is accessing the `created` key of the messages array index --> 
+    {% if date(message.created) < date('-1year') %}
+        Message older than 1 year
+    {% else %}
+        Message received {{ message.created|date('d/m/Y')}}
+    {% endif %}  
+</div>
