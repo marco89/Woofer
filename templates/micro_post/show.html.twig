@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}Title - {{post.title}}{% endblock %}
+
+{% block body %}
+<!-- THIS IS THE VIEW -->
+<h3>{{post.title}}</h3>
+<div>{{post.text}}</div>
+<div>
+    <!-- param is accessing the `created` key of the messages array index --> 
+    {% if date(post.created) < date('-1year') %}
+        Message older than 1 year
+    {% else %}
+        Message received {{ post.created|date('d/m/Y')}}
+    {% endif %}  
+</div>
+
+{% endblock %}
