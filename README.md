@@ -7,16 +7,27 @@ Features
 Current functionality:
 
 Future functionality:
+
     - User Registration and Authentication: Users can register, log in, and manage their profiles.
+    
     - Doggy Posts: Create, edit, and delete dog-themed posts.
+    
     - Comments: Users can leave comments on posts.
+    
     - User Profiles: View and edit user profiles, complete with user avatars.
+    
     - Follow/Unfollow: Connect with other dog lovers by following or unfollowing users.
+    
     - Timeline: See a feed of posts from users you follow.
+    
     - Notifications: Get notified about new comments and follows.
+    
     - Doggy Likes: Give and receive "paw-likes" on posts.
+    
     - Hashtags: Tag your posts with dog-related hashtags for easy discovery.
+    
     - Search: Find posts and users with a powerful search functionality.
+    
     - Responsive Design: Enjoy the app on various devices, from desktop to mobile.
 
 Contributing
