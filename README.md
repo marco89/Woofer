@@ -1,10 +1,13 @@
 Woofer - A Dog Themed Twitter Clone
 Project Description
 
-Woofer is a dog-themed Twitter clone designed for the sole purpose of learning and exploring the Symfony framework. This project provides an opportunity to gain hands-on experience with Symfony's features and best practices while building a fun and unique web application. With Woofer, you can share your love for dogs and enhance your Symfony skills simultaneously.
+Woofer is a dog-themed Twitter clone designed for the sole purpose of learning and exploring the Symfony framework. This project provides an opportunity to gain hands-on experience with Symfony's features and best practices while building a fun and unique web application. 
+
+With Woofer, you can share your love for dogs and enhance your Symfony skills simultaneously.
 Features
 
 Current functionality:
+
 
 Future functionality:
 
@@ -33,11 +36,12 @@ Future functionality:
 Contributing
 
 If you'd like to contribute to Woofer, we welcome your pull requests and issue reports. Feel free to fork the repository, make your changes, and submit a pull request. Please follow Symfony's coding standards and provide a clear description of your changes.
+-------------------------
 License
 
 Woofer is open-source software licensed under the MIT License.
 Contact
 
-For any inquiries or feedback, please reach out to your@email.com. We're excited to hear from you and make Woofer better together!
+For any inquiries or feedback, please reach out to us on Discord. We're excited to hear from you and make Woofer better together!
 
 Happy coding and woof-tweeting! 🐶🐾
