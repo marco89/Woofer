@@ -10,6 +10,13 @@
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
 
+        <!-- iterates over all the flash msgs with the "success" attr-->
+        {% for message in app.flashes('success')%}
+            <div style="color: green">{{ message }}</div>
+
+
+        {% endfor %}
+
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
