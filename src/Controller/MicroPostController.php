@@ -100,8 +100,12 @@ class MicroPostController extends AbstractController
             updating of the database. They call those methods, pass "entities" as the
             params. NOTE: an entity is a class that represents a table in a db.*/
             $posts->add($post, true);
-            // adds user alert
-
+            /* flashes only last for one request, the text to be display is the 2nd param
+            and this is shown in base.html.twig as `message` */
+            $this->addFlash('success', 'Your micro post has been saved.');
+            /* redirects to micro-post index page by using the route that's called "app_micro_post"
+               routes are like the motorways of the codebase so app_micro_post is the M1 */
+            return $this->redirectToRoute('app_micro_post');
             // Redirect to another page
         }
 
