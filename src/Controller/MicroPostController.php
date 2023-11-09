@@ -35,10 +35,12 @@ class MicroPostController extends AbstractController
     // attribute annotation
     // micro-post/{id} is the end of the url with {id} being variable i.e. www.website.com/micro-post/1 
     // {id} is passed to the controller as the parameter 
-    // app_micro_post_show is the name of the route, this is what it's labelled as when viewing it while
+    // app_micro_post_show_one is the name of the route, this is what it's labelled as when viewing it while
     // using `symfony console debug:router` 
     /* When this function is called it fetches an entity of the MicroPost
-    type and passes the methods parameter into it to choose which post to display  */
+    type and passes the methods parameter into it to choose which post to display.
+    THe "{post}" at the end of the route is the variable that has the value of $post 
+    assigned to it i.e. if $post = 1 then url is www.website.com/micro-post/1   */
 
     /**
      * Display a single MicroPost.
@@ -50,7 +52,7 @@ class MicroPostController extends AbstractController
      *
      * @return Response A Response object representing the rendered MicroPost view.
      */
-    #[Route('/micro-post/{post}', name: 'app_micro_post_show')]
+    #[Route('/micro-post/{post}', name: 'app_micro_post_show_one')]
     public function showOne(MicroPost $post): Response{
         return $this->render('micro_post/show.html.twig', [
             'post' => $post,
@@ -70,7 +72,7 @@ class MicroPostController extends AbstractController
      * 
      * @return Response A Response object representing the form view for adding a new MicroPost.
      */
-    #[Route('/micro-post/add', name: 'app_micro_post_addPost', priority : 2 )]
+    #[Route('/micro-post/add', name: 'app_micro_post_add', priority : 2 )]
     // adding "$posts" as a 2nd param injects it to give access to the MicroPostRepository repository
     public function add(Request $request, MicroPostRepository $posts): Response {
 
@@ -78,12 +80,13 @@ class MicroPostController extends AbstractController
         $microPost = new MicroPost();
         // create a new form using the createFormBuilder function, with the microPost object passed as the parameter
         $form = $this->createFormBuilder($microPost)
-        // adds input fields
+        // adds input fields with the string param being the default label *if none is specified in the twig file*
         ->add('title')
         ->add('text')
         // 1st param makes form element a submit i.e. a button
         // 2nd param labels the element with the string "Save post"
-        ->add('submit', SubmitType::class, ['label' => 'Save post'])
+        // this is now handled in add.html.twig but leaving here for educational purposes
+        // ->add('submit', SubmitType::class, ['label' => 'Save post'])
         // gets the form
         ->getForm();
 
@@ -100,8 +103,12 @@ class MicroPostController extends AbstractController
             updating of the database. They call those methods, pass "entities" as the
             params. NOTE: an entity is a class that represents a table in a db.*/
             $posts->add($post, true);
-            // adds user alert
-
+            /* flashes only last for one request, the text to be display is the 2nd param
+            and this is shown in base.html.twig as `message` */
+            $this->addFlash('success', 'Your micro post has been saved.');
+            /* redirects to micro-post index page by using the route that's called "app_micro_post"
+               routes are like the motorways of the codebase so app_micro_post is the M1 */
+            return $this->redirectToRoute('app_micro_post');
             // Redirect to another page
         }
 
