@@ -1,0 +1,30 @@
+{{ form_start(form) }}
+        <div>{{form_errors(form)}}</div>
+        <!-- This file is known as a "partial" and it is created like this so 
+        it can be called in other files. They're indicated by the preceding underscore I think -->
+
+
+        <!-- forms work in symfony by giving them beginnings and endings
+        so in this case, form_start and form_end denote the start and
+        the finish of the form. -->
+    
+        <!-- renders the label (i.e. the table col)-->
+        <div>
+            {{ form_label(form.title, 'Please enter the title of your post') }}
+        </div>
+        <!-- renders the widget (i.e. the input field)-->
+        <div>
+            {{ form_widget(form.title, {'attr': {'style' : 'color : blue'}}) }}
+        </div>
+
+        <div>
+            {{ form_label(form.text, 'Please enter the main text of your post') }}
+        </div>
+        <div>
+            {{ form_widget(form.text, {'attr': {'style' : 'color : green'}}) }}
+        </div>
+
+    <div>
+        <button type="submit">Save post</button>
+    </div>
+    {{ form_end(form) }}

@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use DateTime;
 use App\Entity\MicroPost;
+use App\Form\MicroPostType;
 use App\Repository\MicroPostRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -76,19 +77,8 @@ class MicroPostController extends AbstractController
     // adding "$posts" as a 2nd param injects it to give access to the MicroPostRepository repository
     public function add(Request $request, MicroPostRepository $posts): Response {
 
-        // create a new object of the MicroPost class
-        $microPost = new MicroPost();
         // create a new form using the createFormBuilder function, with the microPost object passed as the parameter
-        $form = $this->createFormBuilder($microPost)
-        // adds input fields with the string param being the default label *if none is specified in the twig file*
-        ->add('title')
-        ->add('text')
-        // 1st param makes form element a submit i.e. a button
-        // 2nd param labels the element with the string "Save post"
-        // this is now handled in add.html.twig but leaving here for educational purposes
-        // ->add('submit', SubmitType::class, ['label' => 'Save post'])
-        // gets the form
-        ->getForm();
+        $form = $this->createForm(MicroPostType::class, new MicroPost);
 
         // calls the link submit() method if form was successfully submitted 
         $form->handleRequest($request);
@@ -119,6 +109,41 @@ class MicroPostController extends AbstractController
                 'form' => $form
             ]
         );
+    }
 
+    /**
+     * Allows user to edit post
+     *
+     * @param Request $request
+     * @param MicroPostRepository $posts
+     * @return Response
+     */
+    /* {post} to indicate which postEID is used has already been declared further up 
+    so can be used here */
+    #[Route('/micro-post/edit/{post}', name: 'app_micro_post_edit')]
+    // adding "$posts" as a 2nd param injects it to give access to the MicroPostRepository repository
+    public function edit(MicroPost $post, Request $request, MicroPostRepository $posts): Response {
+
+        // the type hint comes second so this is of the MicroPostType class
+        $form = $this->createForm(MicroPostType::class, $post);
+   
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $post = $form->getData();
+            /* add() is used to add new as well as edit existing forms
+            sort of like insertOrUpdate() */
+            $posts->add($post, true);
+
+            $this->addFlash('success', 'Your micro post has been updated.');
+            return $this->redirectToRoute('app_micro_post');
+            
+        }
+        return $this->renderForm(
+            'micro_post/edit.html.twig', 
+            [
+                'form' => $form
+            ]
+        );
     }
 }
