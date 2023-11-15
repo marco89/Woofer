@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 
-{% block title %}Title - {{post.title}}{% endblock %}
+{% block title %}{{post.title}}{% endblock %}
 
 {% block body %}
 <!-- THIS IS THE VIEW -->
@@ -9,7 +9,7 @@
     <h2>Post Title</h2>
         <h3>{{post.title}}</h3>
     <h2>Post Content</h2>
-        <div>{{post.text}}</div>
+        <h3>{{post.text}}</h3>
     <div>
     <!-- param is accessing the `created` key of the messages array index --> 
     {% if date(post.created) < date('-1year') %}
