@@ -2820,7 +2820,7 @@
                 "symfony/http-kernel": "<5.4",
                 "symfony/translation": "<5.4",
                 "symfony/translation-contracts": "<1.1.7",
-                "symfony/twig-bridge": "<5.4"
+                "symfony/twig-bridge": "6.3.8"
             },
             "require-dev": {
                 "doctrine/collections": "^1.0|^2.0",
