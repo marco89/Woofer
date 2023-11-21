@@ -6,7 +6,7 @@
 <div>
   {% if posts|length > 0 %}
     {% for post in posts %}
-      <div style="color: blue;">
+      <div style="color: green;">
       <!-- app_micro_post_show_one is the route so hrefs use routes in the same way hrefs use links
       The path here is referenced in the showOne() method from the MicroPost.php controller file-->
         <a href="{{ path('app_micro_post_show_one', {post : post.id}) }}">
@@ -17,6 +17,6 @@
   {% else %}
     There's nothing here yet!
   {% endif %}
-  <button href="{{ path('app_micro_post') }}">Return to new post page</button>
+   <a href="{{ path('app_micro_post_add') }}">Return to new post page</a>
 </div>
 {% endblock %}

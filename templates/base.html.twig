@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html class="dark">
     <head>
         <meta charset="UTF-8">
+        <link href="/dist/output.css" rel="stylesheet">
         <!-- appears in browser title, it being called title is arbitrary but good practice to match the title tags. The same goes with body -->
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
@@ -20,11 +21,43 @@
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
-        {# <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous"> #}
+        
+        <!-- required in the base twig file as all others inherit from it (within the same folder at least) -->
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script>
+            tailwind.config = {
+                darkMode: 'class'
+            }
+        </script>
+
     </head>
-    <body>
-    <!-- because this is a base template, it will display its contents wherever it is called and templates that extend it will also display it -->
-    <h1>Welcome to Woofer!</h1>
+    <!-- blue background | brown text | 10px margin | grey background when in dark mode | white text when in dark mode -->
+    <body class="bg-blue-100 text-brown-800 m-10 dark:bg-gray-800 dark:text-white">
+    <!-- full width | when medium breakpoint on page is passed,make div 2/3 the width | 
+    margin (m) on both sides (x = both sides) to auto px | bottom margin 4px |
+    "flex" refers to the flexible box layout, a way to organise and distribute space within a container |
+    evenly spaces out items with uniform space in between | centres items-->
+    <div class="w-full md:w-2/3 mx-auto mb-4 flex justify-between items-center">
+        <div class="text-4xl">
+            <!-- button contains route to app_micro_post (which contains the index twig template i.e. it is the index page of the site.)  -->
+            <!-- as the base template file is extended to all other template files, this home btn is present on every page -->
+            <a href="{{ path('app_micro_post') }}">Home</a>
+            {% block bread %}
+
+            {% endblock %}
+        </div>
+        <div class ="text-right">
+            <div class="text-sm text-gray-400 dark:text-gray-500">Login and Registration</div>
+        </div>
+    </div>
+
+    <div class="w-full md:w-2/3 mx-auto">
+        {% for message in app.flashes('success') %}
+            <div class="rounded-md p-2 border-green-300 bg-green-50 border dark:border-green-600 dark:bg-green-700 dark:text-white mb-4"> {{ message}} </div>
+        {% endfor %}
+        
         {% block body %}{% endblock %}
+    </div>
+
     </body>
 </html>
