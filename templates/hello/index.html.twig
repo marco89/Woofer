@@ -9,7 +9,7 @@ and you reference them with the div tag type that follows `block` which in this 
   <!-- key,message is symfony syntax for a foreach -->
   <!-- app_show_one is name of the route, routes are viewed by running symfony console debug:router -->
     {% for key,message in messages|slice(0, limit) %}
-      <div style="color: blue;">
+      <div style="color: gray;">
         <a href="{{ path('app_show_one', {id : key}) }}">{{message.message}}</a>
       </div> 
       {{ include('hello/_message.html.twig', {message: message})}}
