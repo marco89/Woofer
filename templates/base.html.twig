@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="dark">
+<html id="base" class="dark">
     <head>
         <meta charset="UTF-8">
         <link href="/dist/output.css" rel="stylesheet">
@@ -14,7 +14,7 @@
         <!-- iterates over all the flash msgs with the "success" attr-->
         {% for message in app.flashes('success')%}
             <div style="color: green">{{ message }}</div>
-
+z
 
         {% endfor %}
 
@@ -33,31 +33,39 @@
     </head>
     <!-- blue background | brown text | 10px margin | grey background when in dark mode | white text when in dark mode -->
     <body class="bg-blue-100 text-brown-800 m-10 dark:bg-gray-800 dark:text-white">
-    <!-- full width | when medium breakpoint on page is passed,make div 2/3 the width | 
-    margin (m) on both sides (x = both sides) to auto px | bottom margin 4px |
-    "flex" refers to the flexible box layout, a way to organise and distribute space within a container |
-    evenly spaces out items with uniform space in between | centres items-->
-    <div class="w-full md:w-2/3 mx-auto mb-4 flex justify-between items-center">
-        <div class="text-4xl">
-            <!-- button contains route to app_micro_post (which contains the index twig template i.e. it is the index page of the site.)  -->
-            <!-- as the base template file is extended to all other template files, this home btn is present on every page -->
-            <a href="{{ path('app_micro_post') }}">Home</a>
-            {% block bread %}
+        <!-- full width | when medium breakpoint on page is passed,make div 2/3 the width | 
+        margin (m) on both sides (x = both sides) to auto px | bottom margin 4px |
+        "flex" refers to the flexible box layout, a way to organise and distribute space within a container |
+        evenly spaces out items with uniform space in between | centres items-->
+        <div class="w-full md:w-2/3 mx-auto mb-4 flex justify-between items-center">
+            <div class="text-4xl">
+                <!-- button contains route to app_micro_post (which contains the index twig template i.e. it is the index page of the site.)  -->
+                <!-- as the base template file is extended to all other template files, this home btn is present on every page -->
+                <a href="{{ path('app_micro_post') }}">Home</a>
+                {% block bread %}
 
-            {% endblock %}
+                {% endblock %}
+            </div>
+            <div class ="text-right">
+                <div class="text-sm text-gray-400 dark:text-gray-500">Login and Registration</div>
+                <svg id="dark_mode_btn" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
+                </svg>
+            </div>
         </div>
-        <div class ="text-right">
-            <div class="text-sm text-gray-400 dark:text-gray-500">Login and Registration</div>
+
+
+        <div class="w-full md:w-2/3 mx-auto">
+            {% for message in app.flashes('success') %}
+                <div class="rounded-md p-2 border-green-300 bg-green-50 border dark:border-green-600 dark:bg-green-700 dark:text-white mb-4"> {{ message}} </div>
+            {% endfor %}
+            
+            {% block body %}{% endblock %}
         </div>
-    </div>
-
-    <div class="w-full md:w-2/3 mx-auto">
-        {% for message in app.flashes('success') %}
-            <div class="rounded-md p-2 border-green-300 bg-green-50 border dark:border-green-600 dark:bg-green-700 dark:text-white mb-4"> {{ message}} </div>
-        {% endfor %}
-        
-        {% block body %}{% endblock %}
-    </div>
-
     </body>
+    <script>
+        dark_mode_btn.addEventListener('click', function() {
+        base.classList.toggle('dark');
+        });
+    </script>
 </html>
