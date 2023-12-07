@@ -42,8 +42,8 @@ z
                 <!-- button contains route to app_micro_post (which contains the index twig template i.e. it is the index page of the site.)  -->
                 <!-- as the base template file is extended to all other template files, this home btn is present on every page -->
                 <a href="{{ path('app_micro_post') }}">Home</a>
-                {% block bread %}
-
+                {% block breadcrumb %}
+                    
                 {% endblock %}
             </div>
             <div class ="text-right grid grid-cols-1 sm:grid-cols-2">
