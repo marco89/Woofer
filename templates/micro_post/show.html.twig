@@ -5,7 +5,7 @@
 
 {% block body %}
 <!-- THIS IS THE VIEW -->
-{% if post.id > 0 %}
+{# {% if post.id > 0 %}
     <h2>Post Title</h2>
         <h3>{{post.title}}</h3>
     <h2>Post Content</h2>
@@ -20,6 +20,7 @@
 {% else %} 
         Invalid postID
     {% endif %}  
-</div>
+</div> #}
+{{ include('/micro_post/_post.html.twig', {post: post})}}
 
 {% endblock %}
