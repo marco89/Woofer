@@ -11,7 +11,7 @@
         <!-- renders the label (i.e. the table col)-->
         <div>
         <!-- the `label_attr` attribute followed by class functions the same way bootstrap does when styling is added to the class attr of the div -->
-             {{ form_label(form.title, 'Please enter the title', {'label_attr': {'class': 'block text-sm text-gray-700 dark:text-gray-300 font-medium'}}) }}
+            {{ form_label(form.title, 'Please enter the title', {'label_attr': {'class': 'block text-sm text-gray-700 dark:text-gray-300 font-medium'}}) }}
         <!-- renders the widget (i.e. the input field)-->
             {{ form_widget(form.title, {'attr': {'class': 'block w-full shadow-sm border-gray-300 dark:border-transparent dark:text-gray-800 rounded-md border p-2 mt-1 mb-2'}})}}
             {{ form_errors(form.title) }}
@@ -20,6 +20,7 @@
         <div>
             {{ form_label(form.text, 'Please enter the main text of your post', {'label_attr': {'class': 'block text-sm text-gray-700 dark:text-gray-300 font-medium'}}) }}
             {{ form_widget(form.text, {'attr': {'class': 'block w-full shadow-sm border-gray-300 dark:border-transparent dark:text-gray-800 rounded-md border p-2 mt-1 mb-2'}})}}
+            {{ form_errors(form.text) }}
         </div>
     </div>
     <div>
