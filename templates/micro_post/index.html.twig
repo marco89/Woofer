@@ -7,22 +7,12 @@
 <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
   {% if posts|length > 0 %}
     {% for post in posts %}
-      <div class="mb-4">
-        <div class="text-2xl">
-          <!-- app_micro_post_show_one is the route so hrefs use routes in the same way hrefs use links
-          The path here is referenced in the showOne() method from the MicroPost.php controller file-->
-          <a class="text-black dark:text-white" href="{{ path('app_micro_post_show_one', {post : post.id}) }}">
-            {{post.title}}
-          </a>
-        </div>
-          <div class="text-black dark:text-white">
-            {{ post.text }}
-          </div>
-      </div> 
+    <!-- this passes the post object to _post.html.twig so that file has access to that object -->
+    {{ include('/micro_post/_post.html.twig', {post: post})}}
     {% endfor %}
   {% else %}
     There's nothing here yet!
   {% endif %}
-   <a class="mt-8" href="{{ path('app_micro_post_add') }}">Return to new post page</a>
 </div>
+
 {% endblock %}

@@ -7,24 +7,23 @@
         <!-- forms work in symfony by giving them beginnings and endings
         so in this case, form_start and form_end denote the start and
         the finish of the form. -->
-    
+    <div>
         <!-- renders the label (i.e. the table col)-->
         <div>
-            {{ form_label(form.title, 'Please enter the title of your post') }}
-        </div>
+        <!-- the `label_attr` attribute followed by class functions the same way bootstrap does when styling is added to the class attr of the div -->
+            {{ form_label(form.title, 'Please enter the title', {'label_attr': {'class': 'block text-sm text-gray-700 dark:text-gray-300 font-medium'}}) }}
         <!-- renders the widget (i.e. the input field)-->
-        <div>
-            {{ form_widget(form.title, {'attr': {'style' : 'color : blue'}}) }}
+            {{ form_widget(form.title, {'attr': {'class': 'block w-full shadow-sm border-gray-300 dark:border-transparent dark:text-gray-800 rounded-md border p-2 mt-1 mb-2'}})}}
+            {{ form_errors(form.title) }}
         </div>
 
         <div>
-            {{ form_label(form.text, 'Please enter the main text of your post') }}
+            {{ form_label(form.text, 'Please enter the main text of your post', {'label_attr': {'class': 'block text-sm text-gray-700 dark:text-gray-300 font-medium'}}) }}
+            {{ form_widget(form.text, {'attr': {'class': 'block w-full shadow-sm border-gray-300 dark:border-transparent dark:text-gray-800 rounded-md border p-2 mt-1 mb-2'}})}}
+            {{ form_errors(form.text) }}
         </div>
-        <div>
-            {{ form_widget(form.text, {'attr': {'style' : 'color : green'}}) }}
-        </div>
-
+    </div>
     <div>
-        <button class="rounded-md p-1 dark:border-green-300" type="submit">Save post</button>
+        <button class="block w-full shadow-sm p-1 border rounded-lg border-transparent text-white bg-indigo-700 hover:text-indigo-300 dark:text-black dark:bg-blue-300 dark:hover:text-indigo-700 dark:hover:bg-blue-400" type="submit">Save post</button>
     </div>
     {{ form_end(form) }}
