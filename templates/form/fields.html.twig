@@ -1,0 +1,15 @@
+{#  #}
+
+{%- block form_errors -%}
+    {% if errors|length > 0 %} 
+        <div class="pb-2 text-red-700 dark:text-red-300">
+                {# iterates over the error object using a foreach, printing 
+                the message property of the object on each loop #}
+            {% for error in errors %}
+                <div>
+                    {{error.message}}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %} 
+{%- endblock form_errors %}
