@@ -1,4 +1,5 @@
-{{ form_start(form) }}
+{# the below disables the automatic validation mentioned in MicroPost.php:17 #}
+{{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
         <div>{{form_errors(form)}}</div>
         <!-- This file is known as a "partial" and it is created like this so 
         it can be called in other files. They're indicated by the preceding underscore I think -->

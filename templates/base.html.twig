@@ -11,10 +11,9 @@
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
 
-        <!-- iterates over all the flash msgs with the "success" attr-->
+        <!-- iterates over all the flash msgs with the "success" attr i.e. just displays a notification to say its been saved -->
         {% for message in app.flashes('success')%}
             <div style="color: green">{{ message }}</div>
-z
 
         {% endfor %}
 
