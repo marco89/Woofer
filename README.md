@@ -35,7 +35,7 @@ Future functionality:
 
 Contributing
 
-If you'd like to contribute to Woofer, we welcome your pull requests and issue reports. Feel free to fork the repository, make your changes, and submit a pull request. Please follow Symfony's coding standards and provide a clear description of your changes.
+If you'd like to contribute to Woofer, I'd welcome your pull requests and issue reports. Feel free to fork the repository, make your changes, and submit a pull request. Please follow Symfony's coding standards and provide a clear description of your changes.
 -------------------------
 License
 
@@ -44,4 +44,4 @@ Contact
 
 For any inquiries or feedback, please reach out to us on Discord. We're excited to hear from you and make Woofer better together!
 
-Happy coding and woof-tweeting! 🐶🐾
+
